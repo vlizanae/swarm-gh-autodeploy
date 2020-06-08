@@ -9,6 +9,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /path/to/images:/mounted/volume:ro
+      - /path/to/setup.json:/root/setup.json:ro
     deploy:
       placement:
         constraints:
