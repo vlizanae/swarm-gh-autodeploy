@@ -1,0 +1,11 @@
+version: "3.8"
+
+services:
+  gh-deploy:
+    image: registry:5000/gh-deploy
+    build: ./swarm-gh-autodeploy
+    deploy:
+      placement:
+        constraints:
+          - "node.labels.adm==true"
+          - "node.role==manager"

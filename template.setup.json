@@ -1,0 +1,16 @@
+{
+  "services": [
+    {
+      "name": "example",
+      "path": "example_folder",
+      "github_repo": "vlizanae/example",
+      "github_branch": "master"
+    }
+  ],
+  "socket": "unix://var/run/docker.sock",
+  "root_path": "/mounted/volume",
+  "registry": "registry:5000",
+  "constraints": [
+    "node.labels.example==false"
+  ]
+}

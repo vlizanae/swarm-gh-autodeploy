@@ -11,7 +11,7 @@ logging.basicConfig(level=logging.INFO)
 class HTTPHandler(web.RequestHandler, ABC):
     SUPPORTED_METHODS = ('POST',)
     logger = logging.getLogger()
-    docker_handler = DockerHandler('/root/docker/telegram_bots/setup.json', logger)
+    docker_handler = DockerHandler('/root/setup.json', logger)
 
     def post(self):
         data = json.loads(self.request.body)
