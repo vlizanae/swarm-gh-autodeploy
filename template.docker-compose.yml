@@ -4,6 +4,9 @@ services:
   gh-deploy:
     image: registry:5000/gh-deploy
     build: ./swarm-gh-autodeploy
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /path/to/images:/mounted/volume:ro
     deploy:
       placement:
         constraints:
