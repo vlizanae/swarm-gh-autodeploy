@@ -3,7 +3,9 @@ version: "3.8"
 services:
   gh-deploy:
     image: registry:5000/gh-deploy
-    build: ./swarm-gh-autodeploy
+    build:
+      context: ./swarm-gh-autodeploy
+      dockerfile: arm.Dockerfile
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /path/to/images:/mounted/volume:ro
