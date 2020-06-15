@@ -1,4 +1,5 @@
 import os
+import git
 import json
 import docker
 
@@ -32,6 +33,10 @@ class DockerHandler:
         for service in self.config['services']:
             if service['github_repo'] == repo and service['github_branch'] == branch:
                 return service
+
+    @staticmethod
+    def git_pull(service):
+        git.cmd.Git(service['full_path']).pull()
 
     def build_image(self, service):
         try:
@@ -76,6 +81,7 @@ class DockerHandler:
             self.logger.error(f'Server error while creating {service["name"]}.')
 
     def service_full_deploy(self, service):
+        self.git_pull(service)
         self.build_image(service)
         self.push_image(service)
         self.remove_service(service)
