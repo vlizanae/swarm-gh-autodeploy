@@ -34,9 +34,10 @@ class DockerHandler:
             if service['github_repo'] == repo and service['github_branch'] == branch:
                 return service
 
-    @staticmethod
-    def git_pull(service):
-        git.cmd.Git(service['full_path']).pull()
+    def git_pull(self, service):
+        self.logger.info(f'{service["name"]}: Pulling from repo to {service["full_path"]}.')
+        (git.cmd.Git(service['full_path'])
+         .pull(env={'GIT_SSH_COMMAND': 'ssh -o "StrictHostKeyChecking no"'}))
 
     def build_image(self, service):
         try:

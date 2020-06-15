@@ -10,7 +10,8 @@ services:
       - 80:80
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - /path/to/images:/mounted/volume:ro
+      - /root/.ssh/id_rsa:/root/.ssh/id_rsa
+      - /path/to/images:/mounted/volume
       - /path/to/setup.json:/root/setup.json:ro
     deploy:
       placement:
